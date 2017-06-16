@@ -4,16 +4,15 @@
 ### GET /category/:categoryID/topics/:page
 Return a category with list of children and list of topics, paginated (default: newest first, starts from 1, 10 bp) and last post of each.
 
-**Request:** 
-```
+**Request:**
+```javascript
 {
     orderBy: ['stars', 'views', 'postCount', 'created_at'] // can be prefixed with - to reverse order
 }
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {
     id: String,
     name: String,
@@ -69,20 +68,18 @@ Return a category with list of children and list of topics, paginated (default: 
 }
 ```
 
-
 **Permissions:** READ('CATEGORY', $categoryID)
 
 ### GET /category
 Return a list of categories organized in sections, with their child categories & the last active topic of each.
 
-**Request:** 
-```
+**Request:**
+```javascript
 {}
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {
     sections: {
         id: String,
@@ -115,14 +112,13 @@ Return a list of categories organized in sections, with their child categories &
 }
 ```
 
-
 **Permissions:** null
 
 ### POST /category/:categoryID/topic
 Create a topic in the given category.
 
-**Request:** 
-```
+**Request:**
+```javascript
 {
     name: String,
     post: {
@@ -131,14 +127,12 @@ Create a topic in the given category.
 }
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {
     id: String
 }
 ```
-
 
 **Permissions:** POST('CATEGORY', $categoryID)
 
@@ -147,31 +141,28 @@ Create a topic in the given category.
 ### DELETE /post/:postID
 Delete a given message.
 
-**Request:** 
-```
+**Request:**
+```javascript
 {}
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {}
 ```
-
 
 **Permissions:** DELETE('POST', $postID)
 
 ### GET /post/:page
 Return latest messages list, paginated (default: newest first, starts from 1, 10 bp), with its topic.
 
-**Request:** 
-```
+**Request:**
+```javascript
 {}
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {
     posts: [{
         id: String,
@@ -192,25 +183,22 @@ Return latest messages list, paginated (default: newest first, starts from 1, 10
 }
 ```
 
-
 **Permissions:** null
 
 ### PUT /post/:postID
 Edit a given post.
 
-**Request:** 
-```
+**Request:**
+```javascript
 {
     content: String
 }
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {}
 ```
-
 
 **Permissions:** EDIT('POST', $postID)
 
@@ -219,31 +207,28 @@ Edit a given post.
 ### DELETE /private/:privateID
 Delete a given private message.
 
-**Request:** 
-```
+**Request:**
+```javascript
 {}
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {}
 ```
-
 
 **Permissions:** READ('PRIVATE', $privateID)
 
 ### GET /private
 Return a list of privates messages, paginated (newest first, starts from 1, 10 bp).
 
-**Request:** 
-```
+**Request:**
+```javascript
 {}
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {
     privates: [{
         id: String,
@@ -260,26 +245,23 @@ Return a list of privates messages, paginated (newest first, starts from 1, 10 b
 }
 ```
 
-
 **Permissions:** IS_AUTH()
 
 ### POST /private
 Send a private message to a list of recipients.
 
-**Request:** 
-```
+**Request:**
+```javascript
 {}
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {
     content: String,
     recipients: [String]
 }
 ```
-
 
 **Permissions:** IS_AUTH()
 
@@ -288,31 +270,28 @@ Send a private message to a list of recipients.
 ### DELETE /topic/:topicID
 Delete a given topic and all its posts.
 
-**Request:** 
-```
+**Request:**
+```javascript
 {}
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {}
 ```
-
 
 **Permissions:** DELETE('TOPIC', $topicID)
 
 ### GET /topic/:topicID/:page
 Return a topic with list of posts, paginated (oldest first, starts from 1, 10 bp).
 
-**Request:** 
-```
+**Request:**
+```javascript
 {}
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {
     id: String,
     name: String,
@@ -351,22 +330,20 @@ Return a topic with list of posts, paginated (oldest first, starts from 1, 10 bp
 }
 ```
 
-
 **Permissions:** READ('TOPIC', $topicID)
 
 ### GET /topic/unread
 Return a list of topics with unread messages since last connexion, paginated (default: newest first, starts from 1, 10 bp) and last post of each.
 
-**Request:** 
-```
+**Request:**
+```javascript
 {
     orderBy: ['stars', 'views', 'postCount', 'created_at'] // can be prefixed with - to reverse order
 }
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {
     topics: [{
         id: String,
@@ -396,138 +373,124 @@ Return a list of topics with unread messages since last connexion, paginated (de
 }
 ```
 
-
 **Permissions:** IS_AUTH()
 
 ### PATCH /topic/:topicID/lock
 Lock or unlock a given topic.
 
-**Request:** 
-```
+**Request:**
+```javascript
 {
     locked: Boolean
 }
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {}
 ```
-
 
 **Permissions:** IS_MODERATOR()
 
 ### PATCH /topic/:topicID/merge
 Merge a topic with another specified one.
 
-**Request:** 
-```
+**Request:**
+```javascript
 {
     topic: String
 }
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {}
 ```
-
 
 **Permissions:** IS_MODERATOR()
 
 ### PATCH /topic/:topicID/move
 Move a given topic to another category.
 
-**Request:** 
-```
+**Request:**
+```javascript
 {
     category: String
 }
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {}
 ```
-
 
 **Permissions:** IS_MODERATOR()
 
 ### PATCH /topic/:topicID/split
 Split a topic in two separate parts starting from the specified post.
 
-**Request:** 
-```
+**Request:**
+```javascript
 {
     post: String
 }
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {
     topic1: String,
     topic2: String
 }
 ```
 
-
 **Permissions:** IS_MODERATOR()
 
 ### PATCH /topic/:topicID/watch
 Watch/Unwatch a given topic.
 
-**Request:** 
-```
+**Request:**
+```javascript
 {
     watch: Boolean
 }
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {}
 ```
-
 
 **Permissions:** IS_AUTH()
 
 ### POST /topic/:topicID/post
 Create a message in the given category.
 
-**Request:** 
-```
+**Request:**
+```javascript
 {
     content: String
 }
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {
     id: String
 }
 ```
-
 
 **Permissions:** POST('TOPIC', $topicID)
 
 ### PUT /topic/:topicID
 Edit a given topic.
 
-**Request:** 
-```
+**Request:**
+```javascript
 {
     name: String
 }
 ```
-
 
 **Permissions:** EDIT('TOPIC', $topicID)
 
@@ -536,14 +499,13 @@ Edit a given topic.
 ### GET /user/:userID/posts/:page
 Return list of last posts of a member, paginated (newest first, starts from 1, 10 bp)
 
-**Request:** 
-```
+**Request:**
+```javascript
 {}
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {
     id: String,
     name: String,
@@ -560,20 +522,18 @@ Return list of last posts of a member, paginated (newest first, starts from 1, 1
 }
 ```
 
-
 **Permissions:** null
 
 ### GET /user/:userID
 Return a given member public profile.
 
-**Request:** 
-```
+**Request:**
+```javascript
 {}
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {
     id: String,
     name: String,
@@ -622,22 +582,20 @@ Return a given member public profile.
 }
 ```
 
-
 **Permissions:** null
 
 ### GET /user
 Return list of users connected since a specified time and what they are doing.
 
-**Request:** 
-```
+**Request:**
+```javascript
 {
     time: Number // in minutes
 }
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {
     users: [
         id: String,
@@ -648,14 +606,13 @@ Return list of users connected since a specified time and what they are doing.
 }
 ```
 
-
 **Permissions:** null
 
 ### PATCH /user/:userID
 Edit a given member profile.
 
-**Request:** 
-```
+**Request:**
+```javascript
 {
     &name: String,
     &vanity: String,
@@ -675,20 +632,18 @@ Edit a given member profile.
 }
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {}
 ```
-
 
 **Permissions:** IS_SELF() || IS_MODERATOR()
 
 ### POST /user
 Edit a given member profile.
 
-**Request:** 
-```
+**Request:**
+```javascript
 {
     name: String,
     &email: String,
@@ -698,14 +653,12 @@ Edit a given member profile.
 }
 ```
 
-
-**Response:** 
-```
+**Response:**
+```javascript
 {
     id: String
 }
 ```
-
 
 **Permissions:** null
 
