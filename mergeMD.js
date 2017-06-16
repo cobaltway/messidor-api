@@ -17,6 +17,9 @@ fs.readdirSync('./')
             .match(/\/\*[^]*?\*\//)[0]
             .replace('/*', '')
             .replace('*/', '')
+            .split('\n')
+            .map(line => line.replace(/ {4}/, ''))
+            .join('\n')
             .trim() +
             '\n\n';
     });
