@@ -4,11 +4,17 @@
 ### GET /category/:categoryID/topics/:page
 Return a category with list of children and list of topics, paginated (default: newest first, starts from 1, 10 bp) and last post of each.
 
-**Request:** ```{
+**Request:** 
+```
+{
     orderBy: ['stars', 'views', 'postCount', 'created_at'] // can be prefixed with - to reverse order
-}```
+}
+```
 
-**Response:** ```{
+
+**Response:** 
+```
+{
     id: String,
     name: String,
     image: String,
@@ -60,16 +66,24 @@ Return a category with list of children and list of topics, paginated (default: 
         },
         watched: Boolean
     }]
-}```
+}
+```
+
 
 **Permissions:** READ('CATEGORY', $categoryID)
 
 ### GET /category
 Return a list of categories organized in sections, with their child categories & the last active topic of each.
 
-**Request:** ```{}```
+**Request:** 
+```
+{}
+```
 
-**Response:** ```{
+
+**Response:** 
+```
+{
     sections: {
         id: String,
         name: String,
@@ -98,23 +112,33 @@ Return a list of categories organized in sections, with their child categories &
             }]
         }]
     }
-}```
+}
+```
+
 
 **Permissions:** null
 
 ### POST /category/:categoryID/topic
 Create a topic in the given category.
 
-**Request:** ```{
+**Request:** 
+```
+{
     name: String,
     post: {
         content: String
     }
-}```
+}
+```
 
-**Response:** ```{
+
+**Response:** 
+```
+{
     id: String
-}```
+}
+```
+
 
 **Permissions:** POST('CATEGORY', $categoryID)
 
@@ -123,18 +147,32 @@ Create a topic in the given category.
 ### DELETE /post/:postID
 Delete a given message.
 
-**Request:** ```{}```
+**Request:** 
+```
+{}
+```
 
-**Response:** ```{}```
+
+**Response:** 
+```
+{}
+```
+
 
 **Permissions:** DELETE('POST', $postID)
 
 ### GET /post/:page
 Return latest messages list, paginated (default: newest first, starts from 1, 10 bp), with its topic.
 
-**Request:** ```{}```
+**Request:** 
+```
+{}
+```
 
-**Response:** ```{
+
+**Response:** 
+```
+{
     posts: [{
         id: String,
         name: String,
@@ -151,18 +189,28 @@ Return latest messages list, paginated (default: newest first, starts from 1, 10
         id: String,
         name: String
     }]
-}```
+}
+```
+
 
 **Permissions:** null
 
 ### PUT /post/:postID
 Edit a given post.
 
-**Request:** ```{
+**Request:** 
+```
+{
     content: String
-}```
+}
+```
 
-**Response:** ```{}```
+
+**Response:** 
+```
+{}
+```
+
 
 **Permissions:** EDIT('POST', $postID)
 
@@ -171,18 +219,32 @@ Edit a given post.
 ### DELETE /private/:privateID
 Delete a given private message.
 
-**Request:** ```{}```
+**Request:** 
+```
+{}
+```
 
-**Response:** ```{}```
+
+**Response:** 
+```
+{}
+```
+
 
 **Permissions:** READ('PRIVATE', $privateID)
 
 ### GET /private
 Return a list of privates messages, paginated (newest first, starts from 1, 10 bp).
 
-**Request:** ```{}```
+**Request:** 
+```
+{}
+```
 
-**Response:** ```{
+
+**Response:** 
+```
+{
     privates: [{
         id: String,
         content: String,
@@ -195,19 +257,29 @@ Return a list of privates messages, paginated (newest first, starts from 1, 10 b
             title: String,
         }
     }]
-}```
+}
+```
+
 
 **Permissions:** IS_AUTH()
 
 ### POST /private
 Send a private message to a list of recipients.
 
-**Request:** ```{}```
+**Request:** 
+```
+{}
+```
 
-**Response:** ```{
+
+**Response:** 
+```
+{
     content: String,
     recipients: [String]
-}```
+}
+```
+
 
 **Permissions:** IS_AUTH()
 
@@ -216,18 +288,32 @@ Send a private message to a list of recipients.
 ### DELETE /topic/:topicID
 Delete a given topic and all its posts.
 
-**Request:** ```{}```
+**Request:** 
+```
+{}
+```
 
-**Response:** ```{}```
+
+**Response:** 
+```
+{}
+```
+
 
 **Permissions:** DELETE('TOPIC', $topicID)
 
 ### GET /topic/:topicID/:page
 Return a topic with list of posts, paginated (oldest first, starts from 1, 10 bp).
 
-**Request:** ```{}```
+**Request:** 
+```
+{}
+```
 
-**Response:** ```{
+
+**Response:** 
+```
+{
     id: String,
     name: String,
     rp: Boolean,
@@ -262,18 +348,26 @@ Return a topic with list of posts, paginated (oldest first, starts from 1, 10 bp
             description: String
         }
     }]
-}```
+}
+```
+
 
 **Permissions:** READ('TOPIC', $topicID)
 
 ### GET /topic/unread
 Return a list of topics with unread messages since last connexion, paginated (default: newest first, starts from 1, 10 bp) and last post of each.
 
-**Request:** ```{
+**Request:** 
+```
+{
     orderBy: ['stars', 'views', 'postCount', 'created_at'] // can be prefixed with - to reverse order
-}```
+}
+```
 
-**Response:** ```{
+
+**Response:** 
+```
+{
     topics: [{
         id: String,
         name: String,
@@ -299,87 +393,141 @@ Return a list of topics with unread messages since last connexion, paginated (de
             }
         }
     }]
-}```
+}
+```
+
 
 **Permissions:** IS_AUTH()
 
 ### PATCH /topic/:topicID/lock
 Lock or unlock a given topic.
 
-**Request:** ```{
+**Request:** 
+```
+{
     locked: Boolean
-}```
+}
+```
 
-**Response:** ```{}```
+
+**Response:** 
+```
+{}
+```
+
 
 **Permissions:** IS_MODERATOR()
 
 ### PATCH /topic/:topicID/merge
 Merge a topic with another specified one.
 
-**Request:** ```{
+**Request:** 
+```
+{
     topic: String
-}```
+}
+```
 
-**Response:** ```{}```
+
+**Response:** 
+```
+{}
+```
+
 
 **Permissions:** IS_MODERATOR()
 
 ### PATCH /topic/:topicID/move
 Move a given topic to another category.
 
-**Request:** ```{
+**Request:** 
+```
+{
     category: String
-}```
+}
+```
 
-**Response:** ```{}```
+
+**Response:** 
+```
+{}
+```
+
 
 **Permissions:** IS_MODERATOR()
 
 ### PATCH /topic/:topicID/split
 Split a topic in two separate parts starting from the specified post.
 
-**Request:** ```{
+**Request:** 
+```
+{
     post: String
-}```
+}
+```
 
-**Response:** ```{
+
+**Response:** 
+```
+{
     topic1: String,
     topic2: String
-}```
+}
+```
+
 
 **Permissions:** IS_MODERATOR()
 
 ### PATCH /topic/:topicID/watch
 Watch/Unwatch a given topic.
 
-**Request:** ```{
+**Request:** 
+```
+{
     watch: Boolean
-}```
+}
+```
 
-**Response:** ```{}```
+
+**Response:** 
+```
+{}
+```
+
 
 **Permissions:** IS_AUTH()
 
 ### POST /topic/:topicID/post
 Create a message in the given category.
 
-**Request:** ```{
+**Request:** 
+```
+{
     content: String
-}```
+}
+```
 
-**Response:** ```{
+
+**Response:** 
+```
+{
     id: String
-}```
+}
+```
+
 
 **Permissions:** POST('TOPIC', $topicID)
 
 ### PUT /topic/:topicID
 Edit a given topic.
 
-**Request:** ```{
+**Request:** 
+```
+{
     name: String
-}```
+}
+```
+
 
 **Permissions:** EDIT('TOPIC', $topicID)
 
@@ -388,9 +536,15 @@ Edit a given topic.
 ### GET /user/:userID/posts/:page
 Return list of last posts of a member, paginated (newest first, starts from 1, 10 bp)
 
-**Request:** ```{}```
+**Request:** 
+```
+{}
+```
 
-**Response:** ```{
+
+**Response:** 
+```
+{
     id: String,
     name: String,
     posts: [{
@@ -403,16 +557,24 @@ Return list of last posts of a member, paginated (newest first, starts from 1, 1
             name: String
         }
     }]
-}```
+}
+```
+
 
 **Permissions:** null
 
 ### GET /user/:userID
 Return a given member public profile.
 
-**Request:** ```{}```
+**Request:** 
+```
+{}
+```
 
-**Response:** ```{
+
+**Response:** 
+```
+{
     id: String,
     name: String,
     color: String,
@@ -457,32 +619,44 @@ Return a given member public profile.
         description: String
     }],
     referenceAccount: String // $(self, modo)
-}```
+}
+```
+
 
 **Permissions:** null
 
 ### GET /user
 Return list of users connected since a specified time and what they are doing.
 
-**Request:** ```{
+**Request:** 
+```
+{
     time: Number // in minutes
-}```
+}
+```
 
-**Response:** ```{
+
+**Response:** 
+```
+{
     users: [
         id: String,
         name: String,
         color: String,
         activity: String
     ]
-}```
+}
+```
+
 
 **Permissions:** null
 
 ### PATCH /user/:userID
 Edit a given member profile.
 
-**Request:** ```{
+**Request:** 
+```
+{
     &name: String,
     &vanity: String,
     &group: String,
@@ -498,26 +672,40 @@ Edit a given member profile.
     &referenceAccount: String,
     &newPassword: String,
     &newPasswordConfirm: String
-}```
+}
+```
 
-**Response:** ```{}```
+
+**Response:** 
+```
+{}
+```
+
 
 **Permissions:** IS_SELF() || IS_MODERATOR()
 
 ### POST /user
 Edit a given member profile.
 
-**Request:** ```{
+**Request:** 
+```
+{
     name: String,
     &email: String,
     &referenceAccount: String,
     password: String,
     passwordConfirm: String
-}```
+}
+```
 
-**Response:** ```{
+
+**Response:** 
+```
+{
     id: String
-}```
+}
+```
+
 
 **Permissions:** null
 
