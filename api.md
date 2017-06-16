@@ -73,10 +73,7 @@ Return a category with list of children and list of topics, paginated (default: 
 ### GET /category
 Return a list of categories organized in sections, with their child categories & the last active topic of each.
 
-**Request:**
-```javascript
-{}
-```
+**Request:** `{}`
 
 **Response:**
 ```javascript
@@ -141,25 +138,16 @@ Create a topic in the given category.
 ### DELETE /post/:postID
 Delete a given message.
 
-**Request:**
-```javascript
-{}
-```
+**Request:** `{}`
 
-**Response:**
-```javascript
-{}
-```
+**Response:** `{}`
 
 **Permissions:** DELETE('POST', $postID)
 
 ### GET /post/:page
 Return latest messages list, paginated (default: newest first, starts from 1, 10 bp), with its topic.
 
-**Request:**
-```javascript
-{}
-```
+**Request:** `{}`
 
 **Response:**
 ```javascript
@@ -195,10 +183,7 @@ Edit a given post.
 }
 ```
 
-**Response:**
-```javascript
-{}
-```
+**Response:** `{}`
 
 **Permissions:** EDIT('POST', $postID)
 
@@ -207,25 +192,16 @@ Edit a given post.
 ### DELETE /private/:privateID
 Delete a given private message.
 
-**Request:**
-```javascript
-{}
-```
+**Request:** `{}`
 
-**Response:**
-```javascript
-{}
-```
+**Response:** `{}`
 
 **Permissions:** READ('PRIVATE', $privateID)
 
 ### GET /private
 Return a list of privates messages, paginated (newest first, starts from 1, 10 bp).
 
-**Request:**
-```javascript
-{}
-```
+**Request:** `{}`
 
 **Response:**
 ```javascript
@@ -250,10 +226,7 @@ Return a list of privates messages, paginated (newest first, starts from 1, 10 b
 ### POST /private
 Send a private message to a list of recipients.
 
-**Request:**
-```javascript
-{}
-```
+**Request:** `{}`
 
 **Response:**
 ```javascript
@@ -270,25 +243,16 @@ Send a private message to a list of recipients.
 ### DELETE /topic/:topicID
 Delete a given topic and all its posts.
 
-**Request:**
-```javascript
-{}
-```
+**Request:** `{}`
 
-**Response:**
-```javascript
-{}
-```
+**Response:** `{}`
 
 **Permissions:** DELETE('TOPIC', $topicID)
 
 ### GET /topic/:topicID/:page
 Return a topic with list of posts, paginated (oldest first, starts from 1, 10 bp).
 
-**Request:**
-```javascript
-{}
-```
+**Request:** `{}`
 
 **Response:**
 ```javascript
@@ -385,10 +349,7 @@ Lock or unlock a given topic.
 }
 ```
 
-**Response:**
-```javascript
-{}
-```
+**Response:** `{}`
 
 **Permissions:** IS_MODERATOR()
 
@@ -402,10 +363,7 @@ Merge a topic with another specified one.
 }
 ```
 
-**Response:**
-```javascript
-{}
-```
+**Response:** `{}`
 
 **Permissions:** IS_MODERATOR()
 
@@ -419,10 +377,7 @@ Move a given topic to another category.
 }
 ```
 
-**Response:**
-```javascript
-{}
-```
+**Response:** `{}`
 
 **Permissions:** IS_MODERATOR()
 
@@ -456,10 +411,7 @@ Watch/Unwatch a given topic.
 }
 ```
 
-**Response:**
-```javascript
-{}
-```
+**Response:** `{}`
 
 **Permissions:** IS_AUTH()
 
@@ -499,10 +451,7 @@ Edit a given topic.
 ### GET /user/:userID/posts/:page
 Return list of last posts of a member, paginated (newest first, starts from 1, 10 bp)
 
-**Request:**
-```javascript
-{}
-```
+**Request:** `{}`
 
 **Response:**
 ```javascript
@@ -527,10 +476,7 @@ Return list of last posts of a member, paginated (newest first, starts from 1, 1
 ### GET /user/:userID
 Return a given member public profile.
 
-**Request:**
-```javascript
-{}
-```
+**Request:** `{}`
 
 **Response:**
 ```javascript
@@ -632,10 +578,7 @@ Edit a given member profile.
 }
 ```
 
-**Response:**
-```javascript
-{}
-```
+**Response:** `{}`
 
 **Permissions:** IS_SELF() || IS_MODERATOR()
 

@@ -17,6 +17,7 @@ fs.readdirSync('./')
             .match(/\/\*[^]*?\*\//)[0]
             .replace('/*', '')
             .replace('*/', '')
+            .replace(/```\{\}```/g, '`{}`')
             .replace('Request:** ```', 'Request:**\n```javascript\n')
             .replace('Response:** ```', 'Response:**\n```javascript\n')
             .replace(/\}```/g, '}\n```')
